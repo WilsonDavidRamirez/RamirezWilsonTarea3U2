@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+  <h1>Formulario de Registro</h1>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+        {% for msg in messages %}
+          <li style="color:red">{{ msg }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <form id="registroForm" method="POST" action="/registro">
+    <label>Nombre de usuario: <input type="text" name="username" required></label><br>
+    <label>Email: <input type="email" name="email" required></label><br>
+    <label>Contraseña: <input type="password" name="password" id="password" required></label><br>
+    <label>Confirmar contraseña: <input type="password" name="confirmPassword" id="confirmPassword" required></label><br>
+    <label>Edad: <input type="number" name="edad" min="18" max="99" required></label><br>
+    <label>Biografía: <textarea name="bio" maxlength="200"></textarea></label><br>
+    <label>Rol:
+      <select name="rol" required>
+        <option value="">--Selecciona--</option>
+        <option value="admin">Admin</option>
+        <option value="usuario">Usuario</option>
+      </select>
+    </label><br><br>
+    <button type="submit">Registrar</button>
+  </form>
+</body>
+</html>
